@@ -2,13 +2,13 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "backend",
   "main": "src/index.ts",
-  "compatibility_date": "2025-05-17"
+  "compatibility_date": "2025-05-17",
   // "compatibility_flags": [
   //   "nodejs_compat"
   // ],
-  // "vars": {
-  //   "MY_VAR": "my-variable"
-  // },
+  "vars": {
+    "DATABASE_URL": "postgresql://inkspire_owner:npg_fNpjILqW4d0u@ep-twilight-waterfall-a4wvtjqf-pooler.us-east-1.aws.neon.tech/inkspire?sslmode=require"
+  }
   // "kv_namespaces": [
   //   {
   //     "binding": "MY_KV_NAMESPACE",
