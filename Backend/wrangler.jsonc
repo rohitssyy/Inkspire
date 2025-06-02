@@ -7,7 +7,7 @@
   //   "nodejs_compat"
   // ],
   "vars": {
-    "DATABASE_URL": "postgresql://inkspire_owner:npg_fNpjILqW4d0u@ep-twilight-waterfall-a4wvtjqf-pooler.us-east-1.aws.neon.tech/inkspire?sslmode=require"
+   "DATABASE_URL":"prisma://accelerate.prisma-data.net/?api_key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlfa2V5IjoiMDFKV1BQTk5aOVRTMzg5VlQ1OTFEODhIV0IiLCJ0ZW5hbnRfaWQiOiJjODE4MTI0YmE0MmNjNjg0ZWIyYjM5YTk2MWJkNDdjZDAxYTdkZWI2ZGI1ZTFhMzhlNjg2M2RlNTI5M2Q3YmRkIiwiaW50ZXJuYWxfc2VjcmV0IjoiZjY2YWYxNmQtNDE0OS00MmQxLTk3OGQtNTE3ZTRlYjUyODE1In0.b_DRNTMLwjpwocnJv4uDp1EoCFyfaoX0acCMkNuoyFg"
   }
   // "kv_namespaces": [
   //   {

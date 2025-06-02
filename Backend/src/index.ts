@@ -1,13 +1,32 @@
-import { Hono } from 'hono'
-import { PrismaClient } from '@prisma/client/extension'
+import { Hono } from 'hono';
+import { PrismaClient } from './generated/prisma/edge';
+import { withAccelerate } from '@prisma/extension-accelerate';
 
-const app = new Hono()
-const prisma = new PrismaClient()
- 
+const app = new Hono<{
+  Bindings: {
+    DATABASE_URL:string
+  }
+}>()
 
 
-app.post('/api/v1/signup', (c) => {
+app.post('/api/v1/signup', async (c) => {
+  const prisma = new PrismaClient({
+    datasourceUrl: c.env.DATABASE_URL
+  }).$extends(withAccelerate())
+  
 
+  const body = await c.req.json()
+
+  await prisma.user.create({
+    data: {
+      email: body.email,
+      password: body.password,
+      name: body.name
+      },
+    })
+   
+  
+  
   return c.json({
     message: "Signup Route: "
   })
