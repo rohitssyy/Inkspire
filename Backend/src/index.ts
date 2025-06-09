@@ -10,7 +10,7 @@ const app = new Hono<{
   }
 }>()
 
-app.use("/api/v1/blog/*", async(c, next){
+app.use("/api/v1/blog/*", async(c, next) =>{
   
   const header = await c.req.header("Authorization")
 
@@ -90,10 +90,12 @@ app.post('/api/v1/blog', (c) => {
 })
 
 app.put("/api/v1/blog", (c) => {
+  return c.text("")
 
 })
 
 app.get("/api/v1/blog/:id", (c) => {
+  return c.text("")
 
 })
 
