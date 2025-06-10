@@ -1,4 +1,5 @@
 import { Hono } from 'hono';
+// since your using edge servers don't forget to use edge servers
 import { PrismaClient } from './generated/prisma/edge';
 import { withAccelerate } from '@prisma/extension-accelerate';
 import { decode, sign, verify } from 'hono/jwt'
@@ -12,7 +13,7 @@ const app = new Hono<{
 
 app.use("/api/v1/blog/*", async(c, next) =>{
   
-  const header = await c.req.header("Authorization")
+  const header = c.req.header("Authorization")
 
   if (!header) {
     c.status(403)
@@ -23,6 +24,10 @@ app.use("/api/v1/blog/*", async(c, next) =>{
 
   const verification = await verify(token, c.env.JWT_SECRET);
    
+  if (verification) {
+    return c.json({Message:"Verified"})
+    next()
+  }
 
 
 })
@@ -79,7 +84,8 @@ app.post('/api/v1/login', async (c) => {
      c.status(403);
     return c.json({Error: "User not found"})
   }
-
+  const jwt = await sign({id: LoginUser.id}, c.env.JWT_SECRET,'HS512')
+  return c.json({jwt})
 })
 
 
@@ -94,20 +100,19 @@ app.put("/api/v1/blog", (c) => {
 
 })
 
-app.get("/api/v1/blog/:id", (c) => {
-  return c.text("")
 
-})
-
-
-
+// this is you adding extra : all blog at once 
 app.get("/api/v1/blog/bulk", (c) => {
 
   return c.text("")
 })
 
-app.get("/", (c) => {
-  return c.text("hello")
+
+
+app.get("/api/v1/blog/:id", (c) => {
+  return c.text("")
+
 })
+
 
 export default app
